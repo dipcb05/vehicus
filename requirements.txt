@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pymongo
+motor
+redis
+python-dotenv
+setuptools
+pytest
+httpx
+pytest-asyncio

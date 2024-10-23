@@ -1,0 +1,5 @@
+#ignore the local cache file and env file to make the image file as small as possible
+
+__pycache__/
+*.py[cod]
+.env
