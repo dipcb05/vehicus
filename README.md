@@ -46,4 +46,4 @@
 
 ## API Documentation
 
-- The API documentation is automatically generated using FastAPI's Swagger UI. You can access it by navigating to http://localhost:8000/docs in your browser.
+- The API documentation is automatically generated using FastAPI's Swagger UI. You can access it by navigating to http://localhost:8000/docs in your browser. Also OpenAPI docs also available in the repositories.
