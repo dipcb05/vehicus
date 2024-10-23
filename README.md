@@ -6,7 +6,7 @@
 
 - [Functionality Overview](#functionality-overview)
 - [Running the Application](#running-the-application)
-- [Deployment & Maintenance](#deployment & maintenance)
+- [Deployment & Maintenance](#deployment--maintenance)
 - [API Documentation](#api-documentation)
 
 ---
