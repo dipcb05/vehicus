@@ -25,12 +25,9 @@
 
 ## Running the Application
 
-1. build the docker image:
+1. build the docker image and thats it. docker compose will download necessary tools, and run multicontainer(mongodb-redis-vehicus):
  
- ```docker build -t vehicus . ```
-
-2. run the docker container:
-  ```docker run -d -p 8000:8000 --env-file .env --name fastapi-container vehicus```
+ ```docker-compose up --build```
 
 ---
 

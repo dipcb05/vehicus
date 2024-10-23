@@ -293,7 +293,8 @@ async def get_allocation_history(employee_id: str = None, allocation_date: str =
         if employee_id:
             query["employee_id"] = employee_id #two filter added, either employee_id or allocation_date
         if allocation_date:
-            allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d').date()
+            allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d')
+            # allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d').date()
             query["allocation_date"] = allocation_date_obj
 
         allocations = await db.allocations.find(query).to_list(length=None)
