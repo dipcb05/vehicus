@@ -1,14 +1,14 @@
-#alpine is so lightweight
+# Start with a lightweight Python image
 FROM python:3.9-alpine
 
-# avoid accessive cache
+# Avoid excessive cache
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set working directory
 WORKDIR /app
 
-# ensure environment is fully setup and configured
+# Ensure environment is fully set up and configured
 RUN apk update && apk add --no-cache \
     gcc \
     musl-dev \
@@ -19,18 +19,25 @@ RUN apk update && apk add --no-cache \
     curl \
     && apk add --no-cache bash
 
-# ensured pip is installed and installing dependencies
-
+# Ensure pip is installed and install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-
-#copying application code into the container, to app folder, because workdir is /app
+# Copy application code into the container
 COPY . .
 
+# Copy .env.example to .env
 RUN cp .env.example .env
 
+# Create entrypoint script to run seed and server
+RUN echo '#!/bin/sh \n\
+python config/seed.py \n\
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload' > /entry.sh && \
+    chmod +x /entry.sh
+
+# Expose the FastAPI server port
 EXPOSE 8000
 
+#run the server
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

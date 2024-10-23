@@ -1,0 +1,290 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "FastAPI",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/allocations/create": {
+        "post": {
+          "summary": "Allocate Vehicle",
+          "operationId": "allocate_vehicle_allocations_create_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllocationCreate"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/allocations/update/{allocation_id}": {
+        "post": {
+          "summary": "Modify Allocation",
+          "operationId": "modify_allocation_allocations_update__allocation_id__post",
+          "parameters": [
+            {
+              "name": "allocation_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Allocation Id"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllocationUpdate"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/allocations/delete/{allocation_id}": {
+        "post": {
+          "summary": "Remove Allocation",
+          "operationId": "remove_allocation_allocations_delete__allocation_id__post",
+          "parameters": [
+            {
+              "name": "allocation_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Allocation Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/allocations/history": {
+        "post": {
+          "summary": "Fetch Allocation History",
+          "operationId": "fetch_allocation_history_allocations_history_post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllocationHistory"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AllocationCreate": {
+          "properties": {
+            "employee_id": {
+              "type": "string",
+              "title": "Employee Id"
+            },
+            "vehicle_id": {
+              "type": "string",
+              "title": "Vehicle Id"
+            },
+            "allocation_date": {
+              "type": "string",
+              "title": "Allocation Date"
+            }
+          },
+          "type": "object",
+          "required": [
+            "employee_id",
+            "vehicle_id",
+            "allocation_date"
+          ],
+          "title": "AllocationCreate"
+        },
+        "AllocationHistory": {
+          "properties": {
+            "employee_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Employee Id"
+            },
+            "allocation_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Date"
+            }
+          },
+          "type": "object",
+          "title": "AllocationHistory"
+        },
+        "AllocationUpdate": {
+          "properties": {
+            "employee_id": {
+              "type": "string",
+              "title": "Employee Id"
+            },
+            "vehicle_id": {
+              "type": "string",
+              "title": "Vehicle Id"
+            },
+            "allocation_date": {
+              "type": "string",
+              "title": "Allocation Date"
+            }
+          },
+          "type": "object",
+          "required": [
+            "employee_id",
+            "vehicle_id",
+            "allocation_date"
+          ],
+          "title": "AllocationUpdate"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,129 @@
+Folder PATH listing
+Volume serial number is 2885-4BF4
+C:.
+³   .dockerignore
+³   .env
+³   .env.example
+³   .gitignore
+³   Dockerfile
+³   main.py
+³   openapi.json
+³   README.md
+³   requirements.txt
+³   tree.txt
+³   
+ÃÄÄÄ.pytest_cache
+³   ³   .gitignore
+³   ³   CACHEDIR.TAG
+³   ³   README.md
+³   ³   
+³   ÀÄÄÄv
+³       ÀÄÄÄcache
+³               nodeids
+³               stepwise
+³               
+ÃÄÄÄ.trunk
+³   ³   .gitignore
+³   ³   trunk.yaml
+³   ³   
+³   ÃÄÄÄactions
+³   ³   ÃÄÄÄtrunk-cache-prune
+³   ³   ³       2024-10-22-02-09-30.84.yaml
+³   ³   ³       2024-10-22-14-02-24.372.yaml
+³   ³   ³       2024-10-22-16-26-52.737.yaml
+³   ³   ³       2024-10-23-01-23-37.339.yaml
+³   ³   ³       
+³   ³   ÃÄÄÄtrunk-share-with-everyone
+³   ³   ³       2024-10-22-02-09-30.85.yaml
+³   ³   ³       2024-10-22-14-02-54.561.yaml
+³   ³   ³       2024-10-22-16-34-08.567.yaml
+³   ³   ³       2024-10-23-01-23-37.341.yaml
+³   ³   ³       
+³   ³   ÃÄÄÄtrunk-single-player-auto-on-upgrade
+³   ³   ³       2024-10-22-14-06-09.369.yaml
+³   ³   ³       2024-10-22-16-35-13.130.yaml
+³   ³   ³       2024-10-23-01-26-51.484.yaml
+³   ³   ³       
+³   ³   ÃÄÄÄtrunk-single-player-auto-upgrade
+³   ³   ³       2024-10-22-17-25-18.230.yaml
+³   ³   ³       
+³   ³   ÀÄÄÄtrunk-whoami
+³   ³           2024-10-22-17-25-18.230.yaml
+³   ³           
+³   ÃÄÄÄlogs
+³   ³       cli.log
+³   ³       daemon.1.log
+³   ³       daemon.2.log
+³   ³       daemon.3.log
+³   ³       daemon.log
+³   ³       lsp_proxy.log
+³   ³       
+³   ÃÄÄÄnotifications
+³   ÃÄÄÄout
+³   ³       13h50.yaml
+³   ³       5Madk.yaml
+³   ³       b6rlg.yaml
+³   ³       bbEfS.yaml
+³   ³       foJIe.yaml
+³   ³       iPL4j.yaml
+³   ³       NA0OR.yaml
+³   ³       nq5ZE.yaml
+³   ³       NW9Qe.yaml
+³   ³       r06rw.yaml
+³   ³       RnJ0A.yaml
+³   ³       XKkZi.yaml
+³   ³       ywmqR.yaml
+³   ³       
+³   ÃÄÄÄplugins
+³   ÀÄÄÄtools
+ÃÄÄÄapi
+³   ³   index.py
+³   ³   skeleton.py
+³   ³   __init__.py
+³   ³   
+³   ÀÄÄÄ__pycache__
+³           index.cpython-312.pyc
+³           skeleton.cpython-312.pyc
+³           __init__.cpython-312.pyc
+³           
+ÃÄÄÄapp
+³   ³   allocation.py
+³   ³   __init__.py
+³   ³   
+³   ÀÄÄÄ__pycache__
+³           allocation.cpython-312.pyc
+³           __init__.cpython-312.pyc
+³           
+ÃÄÄÄconfig
+³   ³   db.py
+³   ³   redis.py
+³   ³   seed.py
+³   ³   __init__.py
+³   ³   
+³   ÀÄÄÄ__pycache__
+³           db.cpython-312.pyc
+³           redis.cpython-312.pyc
+³           __init__.cpython-312.pyc
+³           
+ÃÄÄÄtest
+³   ³   test.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄ.pytest_cache
+³   ³   ³   .gitignore
+³   ³   ³   CACHEDIR.TAG
+³   ³   ³   README.md
+³   ³   ³   
+³   ³   ÀÄÄÄv
+³   ³       ÀÄÄÄcache
+³   ³               lastfailed
+³   ³               nodeids
+³   ³               stepwise
+³   ³               
+³   ÀÄÄÄ__pycache__
+³           test.cpython-312-pytest-8.3.3.pyc
+³           __init__.cpython-312.pyc
+³           
+ÀÄÄÄ__pycache__
+        main.cpython-312.pyc
+        
