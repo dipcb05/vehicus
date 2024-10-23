@@ -1,4 +1,4 @@
-# Vehicle Allocation System
+# Vehicus
 
 ---
 
@@ -13,13 +13,13 @@
 
 ## Functionality Overview
 
-- **`main.py`**: The entry point of the application. It sets up the FastAPI app and starts the server.
-- **`api/index.py`**: Contains the main API routes and logic for handling requests.
-- **`app/allocation.py`**: Contains the business logic related to vehicle allocations.
+- **`main.py`**: The entry point of the application. It sets up the FastAPI app and starts the server and also seed db for the first time.
+- **`api/index.py`**: Contains the main API routes logic.
+- **`app/allocation.py`**: Contains the business logic.
 - **`config/seed.py`**: Seeds the database with random vehicle and driver data if the database is empty.
 - **`config/db.py`**: Contains the database connection logic for MongoDB.
-- **`config/redis.py`**: Contains the Redis connection logic (if applicable).
-- **`test/test.py`**: Contains unit tests for the application to ensure functionality and performance.
+- **`config/redis.py`**: Contains the Redis connection logic.
+- **`test/test.py`**: Contains unit tests for the application.
 
 ---
 
@@ -36,7 +36,7 @@
 
 ## Deployment & Maintenance
 
-- **Dockerize**: To deploy the application, build a Docker image and run it as a container. Can be published to Docker Hub.
+- **Dockerize**: To deploy the application, build a Docker image and run it as a container. Can be published to Docker Hub. [Docker public image for this project](https://hub.docker.com/repository/docker/dipcb05/vehicus/)
 
 - **Continuous Integration/Continuous Deployment (CI/CD)**: Use tools like Github CI/CD to automate the build, testing, and deployment process.
 
