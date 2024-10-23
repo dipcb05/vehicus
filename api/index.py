@@ -24,25 +24,3 @@ async def remove_allocation(allocation_id: str):
 async def fetch_allocation_history(request: AllocationHistory):
     result = await get_allocation_history(request.employee_id, request.allocation_date)
     return result
-
-@app.exception_handler(404)
-async def not_found_handler(request, exc):
-    return JSONResponse(
-        status_code=404,
-        content={
-            "status_code": 404,
-            "success_message": None,
-            "error_message": "Endpoint not found.",
-        }
-    )
-
-@app.exception_handler(405)
-async def method_not_allowed_handler(request, exc):
-    return JSONResponse(
-        status_code=405,
-        content={
-            "status_code": 405,
-            "success_message": None,
-            "error_message": "Method not allowed",
-        }
-    )

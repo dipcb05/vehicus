@@ -9,6 +9,16 @@ mongo_db_name = os.getenv("MONGO_DB_NAME", "vehicus")
 client = MongoClient(mongo_uri)
 db = client[mongo_db_name]
 
+#db is blank so randomly generate data of vehicles and drivers of 1000
+
+def clear_data():
+    db.vehicles.drop()
+    db.drivers.drop()
+
+def reset_data():
+    clear_data()
+    populate_data(1000)
+    
 def generate_random_data(num_records):
     vehicles = []
     drivers = []

@@ -1,3 +1,5 @@
+# mongodb configuration
+
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import asyncio

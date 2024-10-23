@@ -3,7 +3,6 @@ from config.redis import redis_client
 from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from bson import ObjectId
-from bson.objectid import ObjectId
 import time
 import os
 import json
@@ -14,24 +13,24 @@ CACHE_TIMEOUT = os.getenv("CACHE_TIMEOUT", 600)
 async def create_allocation(employee_id: str, vehicle_id: str, allocation_date: str):
     start_time = time.time()
     try:
-        allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d') 
-        current_date_obj = datetime.now().date()
+        allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d') #convert string to datetime object for comparison
+        current_date_obj = datetime.now().date() #get current date object for avoiding serialization errors
 
 
-        allocation_data = await redis_client.get(f"allocation:{employee_id}")
+        allocation_data = await redis_client.get(f"allocation:{employee_id}") #check for cache data
         
         if allocation_data:
             return {
                 "status_code": 400,
                 "success_message": None,
-                "error_message": "Vehicle is already allocated",
+                "error_message": "Vehicle is already allocated", #duplicate check
                 "vehicle_id": vehicle_id,
                 "employee_id": None,
                 "driver_id": None,
                 "response_time": round(time.time() - start_time, 3)
             }
 
-        existing_allocation = await db.allocations.find_one({
+        existing_allocation = await db.allocations.find_one({ #check data from database for ensuring
             "vehicle_id": vehicle_id,
             "allocation_date": allocation_date_obj
         })
@@ -53,7 +52,7 @@ async def create_allocation(employee_id: str, vehicle_id: str, allocation_date: 
             return {
                 "status_code": 400,
                 "success_message": None,
-                "error_message": "Vehicle not found",
+                "error_message": "Vehicle not found", #not exist check
                 "vehicle_id": None,
                 "employee_id": None,
                 "driver_id": None,
@@ -64,7 +63,7 @@ async def create_allocation(employee_id: str, vehicle_id: str, allocation_date: 
             return {
                 "status_code": 400,
                 "success_message": None,
-                "error_message": "Invalid date",
+                "error_message": "Invalid date", #can not allocate in the past
                 "vehicle_id": None,
                 "employee_id": None,
                 "driver_id": None,
@@ -81,10 +80,10 @@ async def create_allocation(employee_id: str, vehicle_id: str, allocation_date: 
         }
         result = await db.allocations.insert_one(allocation)
         inserted_id = result.inserted_id
-        await redis_client.set(f"allocation:{employee_id}:{vehicle_id}", json.dumps(allocation, default=str))
+        await redis_client.set(f"allocation:{employee_id}:{vehicle_id}", json.dumps(allocation, default=str)) #redis-py does not support datetime object directly
 
         return {
-            "status_code": 201,
+            "status_code": 200,
             "success_message": "success",
             "error_message": None,
             "allocation_id": str(inserted_id),
@@ -112,7 +111,7 @@ async def update_allocation(allocation_id: str, employee_id: str, vehicle_id: st
 
         allocation = await db.allocations.find_one({"_id": ObjectId(allocation_id)})
 
-        if not allocation:
+        if not allocation: #didnt check cache, to prevent old data update from cache
             return {
                 "status_code": 404,
                 "success_message": None,
@@ -150,7 +149,7 @@ async def update_allocation(allocation_id: str, employee_id: str, vehicle_id: st
                 "response_time": round(time.time() - start_time, 3)
             }
 
-        update_result = await db.allocations.update_one(
+        update_result = await db.allocations.update_one( #set updating
             {"_id": ObjectId(allocation_id)},
             {"$set": {
                 "employee_id": employee_id,
@@ -170,7 +169,7 @@ async def update_allocation(allocation_id: str, employee_id: str, vehicle_id: st
 
             return {
                 "status_code": 200,
-                "success_message": "Success",
+                "success_message": "success",
                 "error_message": None,
                 "vehicle_id": vehicle_id,
                 "employee_id": employee_id,
@@ -200,8 +199,6 @@ async def update_allocation(allocation_id: str, employee_id: str, vehicle_id: st
             "response_time": round(time.time() - start_time, 3)
         }
 
-from datetime import datetime
-from bson import ObjectId
 
 async def delete_allocation(allocation_id: str):
     start_time = time.time()
@@ -294,7 +291,7 @@ async def get_allocation_history(employee_id: str = None, allocation_date: str =
 
         query = {}
         if employee_id:
-            query["employee_id"] = employee_id
+            query["employee_id"] = employee_id #two filter added, either employee_id or allocation_date
         if allocation_date:
             allocation_date_obj = datetime.strptime(allocation_date, '%Y-%m-%d').date()
             query["allocation_date"] = allocation_date_obj
