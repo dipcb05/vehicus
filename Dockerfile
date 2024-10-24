@@ -30,12 +30,6 @@ COPY . .
 # Copy .env.example to .env
 RUN cp .env.example .env
 
-# Create entrypoint script to run seed and server
-RUN echo '#!/bin/sh \n\
-python config/seed.py \n\
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload' > /entry.sh && \
-    chmod +x /entry.sh
-
 # Expose the FastAPI server port
 EXPOSE 8000
 
